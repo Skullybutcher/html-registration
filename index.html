@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <!-- Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Link to your local stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+    
+    <div class="container mx-auto p-4 sm:p-8 max-w-2xl">
+        <!-- Success Message - Initially hidden -->
+        <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mb-6 shadow-md fade-in" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">Your data is validated. You can now download the CSV.</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="document.getElementById('success-message').classList.add('hidden')">
+                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+        </div>
+        
+        <!-- Error Message - Initially hidden -->
+        <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-6 shadow-md fade-in" role="alert">
+            <strong class="font-bold">Error!</strong>
+            <span class="block sm:inline">Please fill out all fields before submitting.</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="document.getElementById('error-message').classList.add('hidden')">
+                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+        </div>
+
+        <!-- Registration Form Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-10">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Register Here</h1>
+            <p class="text-gray-600 mb-8">Please fill out the details below.</p>
+
+            <form id="registration-form" novalidate>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Name -->
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+
+                    <!-- Roll Number -->
+                    <div class="mb-4">
+                        <label for="roll-number" class="block text-gray-700 font-medium mb-2">Roll Number</label>
+                        <input type="text" id="roll-number" name="roll-number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+
+                    <!-- College -->
+                    <div class="mb-4">
+                        <label for="college" class="block text-gray-700 font-medium mb-2">College</label>
+                        <input type="text" id="college" name="college" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+
+                    <!-- Branch -->
+                    <div class="mb-4">
+                        <label for="branch" class="block text-gray-700 font-medium mb-2">Branch</label>
+                        <input type="text" id="branch" name="branch" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="mb-4">
+                        <label for="mobile" class="block text-gray-700 font-medium mb-2">Mobile Number</label>
+                        <input type="tel" id="mobile" name="mobile" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                </div>
+
+                <!-- Gender (Radio Buttons) -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">Gender</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="gender" value="Male" class="text-blue-600 focus:ring-blue-500">
+                            <span class="text-gray-700">Male</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="gender" value="Female" class="text-pink-600 focus:ring-pink-500">
+                            <span class="text-gray-700">Female</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="gender" value="Other" class="text-purple-600 focus:ring-purple-500">
+                            <span class="text-gray-700">Other</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Year of Study (Dropdown) -->
+                <div class="mb-8">
+                    <label for="year-of-study" class="block text-gray-700 font-medium mb-2">Year of Study</label>
+                    <select id="year-of-study" name="year-of-study" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <option value="" disabled selected>Please select an option</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                        <option value="5th+ Year">5th+ Year / Post-Graduate</option>
+                    </select>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button type="button" id="submit-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 ease-in-out">
+                        Submit
+                    </button>
+                    <button type="button" id="download-btn" class="w-full bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-300 ease-in-out disabled:bg-gray-400 disabled:cursor-not-allowed">
+                        Download CSV
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Link to your local script file -->
+    <script src="script.js"></script>
+</body>
+</html>
